@@ -1,0 +1,138 @@
+{
+  "built_at": "2026-11-05 22:21:50",
+  "build_code_sha256": {
+    "training/generate_dataset.py": "2af49b703c5cbf5459bed4ee155b9224f96087d1c95b29b56bd3606b2cfa7f5d",
+    "training/labeling.py": "636549514f85c0d7ee7d562fcd49f304bad6525e99e3a2ed570bdae73f0df1eb",
+    "data_pipeline/preprocessing.py": "9af39fde1da6bbc7ef3d29016dcae9229b8db6734dba959e8c1a18eb94a5eec0"
+  },
+  "recordings_sha256": {
+    "rec_N.npz": "7bd8d8217178e11794cdcc81b886ef71b2698944c4c768d1a0be762d9f247f6b",
+    "rec_W15.npz": "0be3c8c4618c7ea970a9ee5a929f21b572b2db56e7e0899329b270a5ba4bc501",
+    "rec_W25.npz": "6a2e07d96175f2b74f31da51befe7e18db008705be09c30b4fc6477d4c6ccd7b",
+    "rec_CB2.npz": "bae7c64000853fcbb9d35bdf3b9088b9c9872165d7d757ef8a7e05b26ad48f86",
+    "rec_CB5.npz": "e7b82aa70aea42e0affc5d1ccbeafb5e042ae901ed91ef95c2565f8374b402c5",
+    "rec_CT4.npz": "c1f97350998a15303a57b83fb4b7fcd9ecede67ec80ae0b82a9cd719e0566bab",
+    "rec_CT7.npz": "c99bac946c6313ebfd6a3edde1bfe614a831d293ff29cdc8972f012f5080cce8",
+    "rec_CV.npz": "ee9eadd00f1f5a74fe16a29225ad19f9cc7ef1679b617d34b4271ec68085314a"
+  },
+  "outputs_sha256": {
+    "training/dataset.npz": "d2ec89958d1c810c8c293afa12a967515c935553f41ba42e9e0d690a7db1feab",
+    "data_pipeline/training_stats.npy": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996"
+  },
+  "per_recording": [
+    {
+      "rec": "N",
+      "windows": 117,
+      "transition": 0,
+      "retained": 117,
+      "labels_0_1_2": [
+        117,
+        0,
+        0
+      ],
+      "train": 90,
+      "val": 24
+    },
+    {
+      "rec": "W15",
+      "windows": 45,
+      "transition": 2,
+      "retained": 43,
+      "labels_0_1_2": [
+        0,
+        43,
+        0
+      ],
+      "train": 31,
+      "val": 9
+    },
+    {
+      "rec": "W25",
+      "windows": 45,
+      "transition": 2,
+      "retained": 43,
+      "labels_0_1_2": [
+        0,
+        43,
+        0
+      ],
+      "train": 31,
+      "val": 9
+    },
+    {
+      "rec": "CB2",
+      "windows": 45,
+      "transition": 0,
+      "retained": 45,
+      "labels_0_1_2": [
+        0,
+        0,
+        45
+      ],
+      "train": 33,
+      "val": 9
+    },
+    {
+      "rec": "CB5",
+      "windows": 45,
+      "transition": 0,
+      "retained": 45,
+      "labels_0_1_2": [
+        0,
+        0,
+        45
+      ],
+      "train": 33,
+      "val": 9
+    },
+    {
+      "rec": "CT4",
+      "windows": 45,
+      "transition": 5,
+      "retained": 40,
+      "labels_0_1_2": [
+        0,
+        0,
+        40
+      ],
+      "train": 29,
+      "val": 8
+    },
+    {
+      "rec": "CT7",
+      "windows": 45,
+      "transition": 5,
+      "retained": 40,
+      "labels_0_1_2": [
+        0,
+        0,
+        40
+      ],
+      "train": 29,
+      "val": 8
+    },
+    {
+      "rec": "CV",
+      "windows": 46,
+      "transition": 0,
+      "retained": 46,
+      "labels_0_1_2": [
+        0,
+        0,
+        46
+      ],
+      "train": 33,
+      "val": 10
+    }
+  ],
+  "recording": {
+    "captured_at": "2026-11-05 22:03:13",
+    "note": "Hashes of the code loaded by the v2 recorder (launched after these files were last edited, before any later edit). labeling.py is imported by the recorder but used only in --build.",
+    "recording_code_sha256": {
+      "training/generate_dataset.py": "9466b83d454909a008e8e6456142c284e45af2f8051c13fb79288860de2b9282",
+      "data_pipeline/simulator.py": "7c5ea695853fd7b6e503d090fe0cc8d8589a5afa8eecb32e7fd266cb6214904f",
+      "data_pipeline/preprocessing.py": "9af39fde1da6bbc7ef3d29016dcae9229b8db6734dba959e8c1a18eb94a5eec0",
+      "training/labeling.py": "0ff0e739dd80765890284bf303cbbe359ab086db2bab31d52b9c0b2d7e4c5337"
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "history_s": 38.0,
+  "purge_windows": 3,
+  "val_frac": 0.2,
+  "per_recording": [
+    {
+      "rec": "N",
+      "mode": "none",
+      "cap": null,
+      "recorded": 117,
+      "transition_excluded": 0,
+      "retained": 117,
+      "train": 90,
+      "purged": 3,
+      "val": 24,
+      "train_support": [
+        90,
+        0,
+        0
+      ],
+      "val_support": [
+        24,
+        0,
+        0
+      ],
+      "train_end_to_val_start_s": 39.42,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "W15",
+      "mode": "temp_drift",
+      "cap": 1.5,
+      "recorded": 45,
+      "transition_excluded": 2,
+      "retained": 43,
+      "train": 31,
+      "purged": 3,
+      "val": 9,
+      "train_support": [
+        0,
+        31,
+        0
+      ],
+      "val_support": [
+        0,
+        9,
+        0
+      ],
+      "train_end_to_val_start_s": 39.42,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "W25",
+      "mode": "temp_drift",
+      "cap": 2.5,
+      "recorded": 45,
+      "transition_excluded": 2,
+      "retained": 43,
+      "train": 31,
+      "purged": 3,
+      "val": 9,
+      "train_support": [
+        0,
+        31,
+        0
+      ],
+      "val_support": [
+        0,
+        9,
+        0
+      ],
+      "train_end_to_val_start_s": 39.41,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "CB2",
+      "mode": "combined",
+      "cap": 2.0,
+      "recorded": 45,
+      "transition_excluded": 0,
+      "retained": 45,
+      "train": 33,
+      "purged": 3,
+      "val": 9,
+      "train_support": [
+        0,
+        0,
+        33
+      ],
+      "val_support": [
+        0,
+        0,
+        9
+      ],
+      "train_end_to_val_start_s": 39.41,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "CB5",
+      "mode": "combined",
+      "cap": 5.0,
+      "recorded": 45,
+      "transition_excluded": 0,
+      "retained": 45,
+      "train": 33,
+      "purged": 3,
+      "val": 9,
+      "train_support": [
+        0,
+        0,
+        33
+      ],
+      "val_support": [
+        0,
+        0,
+        9
+      ],
+      "train_end_to_val_start_s": 39.41,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "CT4",
+      "mode": "temp_drift",
+      "cap": 4.0,
+      "recorded": 45,
+      "transition_excluded": 5,
+      "retained": 40,
+      "train": 29,
+      "purged": 3,
+      "val": 8,
+      "train_support": [
+        0,
+        0,
+        29
+      ],
+      "val_support": [
+        0,
+        0,
+        8
+      ],
+      "train_end_to_val_start_s": 39.39,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "CT7",
+      "mode": "temp_drift",
+      "cap": 7.0,
+      "recorded": 45,
+      "transition_excluded": 5,
+      "retained": 40,
+      "train": 29,
+      "purged": 3,
+      "val": 8,
+      "train_support": [
+        0,
+        0,
+        29
+      ],
+      "val_support": [
+        0,
+        0,
+        8
+      ],
+      "train_end_to_val_start_s": 39.36,
+      "gap_exceeds_history": true
+    },
+    {
+      "rec": "CV",
+      "mode": "vibration",
+      "cap": null,
+      "recorded": 46,
+      "transition_excluded": 0,
+      "retained": 46,
+      "train": 33,
+      "purged": 3,
+      "val": 10,
+      "train_support": [
+        0,
+        0,
+        33
+      ],
+      "val_support": [
+        0,
+        0,
+        10
+      ],
+      "train_end_to_val_start_s": 39.41,
+      "gap_exceeds_history": true
+    }
+  ],
+  "totals": {
+    "recorded": 433,
+    "transition_excluded": 14,
+    "retained": 419,
+    "train": 309,
+    "purged": 24,
+    "val": 86
+  },
+  "train_support": [
+    90,
+    62,
+    157
+  ],
+  "val_support": [
+    24,
+    18,
+    44
+  ],
+  "distinct_train_vectors": 309,
+  "calibration_eligible": true,
+  "dataset_matches_rules": true,
+  "min_split_gap_s": 39.36,
+  "sha256": {
+    "training/dataset.npz": "d2ec89958d1c810c8c293afa12a967515c935553f41ba42e9e0d690a7db1feab",
+    "data_pipeline/training_stats.npy": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996",
+    "training/dataset_provenance.json": "a97d5c256b956a28b7402e9c986765daa80b323e916aaf1617f60f3cb358a27a"
+  },
+  "stats_origin": {
+    "source": "rec_N.npz first STATS_WINDOWS windows",
+    "windows": 58,
+    "covers_s": 600.2,
+    "all_windows_true_normal_and_steady": true,
+    "recomputed_equals_saved": true,
+    "max_abs_diff": 0.0
+  },
+  "criteria": {
+    "recorded = excluded + retained (every recording)": true,
+    "retained = train + purged + val (every recording)": true,
+    "every split gap > 38 s": true,
+    "train and val contain all three classes": true,
+    ">= 200 distinct training vectors": true,
+    "dataset_matches_rules": true,
+    "stats recomputed from first 58 windows of N == saved stats": true
+  },
+  "all_criteria_pass": true
+}

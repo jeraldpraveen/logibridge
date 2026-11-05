@@ -1,0 +1,17 @@
+{
+  "report": {
+    "file": "training/split_report.json",
+    "sha256": "f2d59b563cf4d168b06d1a2b7b3921d161e9252fb34ad7cc4c5a22758c3e83a6"
+  },
+  "report_code_sha256": {
+    "training/split_report.py": "a98e03e43cc3716205003d7074978cddebceb6d21bd81d1eb00671101b6c8b0c",
+    "training/generate_dataset.py": "2af49b703c5cbf5459bed4ee155b9224f96087d1c95b29b56bd3606b2cfa7f5d",
+    "training/labeling.py": "636549514f85c0d7ee7d562fcd49f304bad6525e99e3a2ed570bdae73f0df1eb",
+    "data_pipeline/preprocessing.py": "9af39fde1da6bbc7ef3d29016dcae9229b8db6734dba959e8c1a18eb94a5eec0"
+  },
+  "inputs_sha256": {
+    "training/dataset.npz": "d2ec89958d1c810c8c293afa12a967515c935553f41ba42e9e0d690a7db1feab",
+    "data_pipeline/training_stats.npy": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996",
+    "training/dataset_provenance.json": "a97d5c256b956a28b7402e9c986765daa80b323e916aaf1617f60f3cb358a27a"
+  }
+}
