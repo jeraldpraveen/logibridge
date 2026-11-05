@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-11-05 22:03:13",
+  "note": "Hashes of the code loaded by the v2 recorder (launched after these files were last edited, before any later edit). labeling.py is imported by the recorder but used only in --build.",
+  "recording_code_sha256": {
+    "training/generate_dataset.py": "9466b83d454909a008e8e6456142c284e45af2f8051c13fb79288860de2b9282",
+    "data_pipeline/simulator.py": "7c5ea695853fd7b6e503d090fe0cc8d8589a5afa8eecb32e7fd266cb6214904f",
+    "data_pipeline/preprocessing.py": "9af39fde1da6bbc7ef3d29016dcae9229b8db6734dba959e8c1a18eb94a5eec0",
+    "training/labeling.py": "0ff0e739dd80765890284bf303cbbe359ab086db2bab31d52b9c0b2d7e4c5337"
+  }
+}
