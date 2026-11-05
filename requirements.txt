@@ -1,0 +1,16 @@
+# Exact versions used to build (Windows, Python 3.11.4).
+# Install into a venv:  python -m venv .venv  &&  .venv\Scripts\python -m pip install -r requirements.txt
+tensorflow==2.21.0
+tf_keras==2.21.0
+tensorflow-model-optimization==0.8.1
+numpy==2.4.6
+h5py==3.14.0
+ml_dtypes==0.6.0
+protobuf==7.36.2
+paho-mqtt==2.2.0
+psutil==7.2.2
+matplotlib==3.11.2
+pandas==3.1.1
+scipy==1.17.1
+scikit-learn==1.9.1
+reportlab==5.1.0
