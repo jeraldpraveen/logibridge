@@ -37,7 +37,7 @@ from validate_tflite import run   # noqa: E402  same interpreter path + INT8 inp
 
 MODELS = ROOT / "training" / "models"
 VARIANTS = {"M2 PTQ INT8": "m2_ptq_int8.tflite", "M1 FP32": "m1_fp32.tflite"}
-FEATURES = ["temp_mean", "temp_std", "temp_roc", "vib_rms", "vib_peak", "vib_kurtosis"]
+FEATURES = pp.FEATURE_NAMES  # same names as preprocessing.py
 CLASSES = ["Normal", "Warning", "Critical"]
 K = 3.0
 H = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -88,7 +88,7 @@ if __name__ == "__main__":
            "dataset_sha256": H(ROOT / "training" / "dataset.npz"), "stats_sha256": H(pp.STATS_PATH),
            "features": FEATURES,
            "shift_in_physical_units": {f: round(float(K * s), 4) for f, s in zip(FEATURES, std)},
-           "units": {"temp_mean": "degC", "temp_std": "degC", "temp_roc": "degC/min",
+           "units": {"temp_mean": "degC", "temp_std": "degC", "temp_rate_C_per_min": "degC/min",
                      "vib_rms": "g", "vib_peak": "g", "vib_kurtosis": "-"},
            "models": {}}
     for name, f in VARIANTS.items():

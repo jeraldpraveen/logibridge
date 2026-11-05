@@ -12,7 +12,7 @@
   "features": [
     "temp_mean",
     "temp_std",
-    "temp_roc",
+    "temp_rate_C_per_min",
     "vib_rms",
     "vib_peak",
     "vib_kurtosis"
@@ -20,7 +20,7 @@
   "shift_in_physical_units": {
     "temp_mean": 0.1375,
     "temp_std": 0.0807,
-    "temp_roc": 1.1759,
+    "temp_rate_C_per_min": 1.1759,
     "vib_rms": 0.0343,
     "vib_peak": 0.0495,
     "vib_kurtosis": 1.5424
@@ -28,7 +28,7 @@
   "units": {
     "temp_mean": "degC",
     "temp_std": "degC",
-    "temp_roc": "degC/min",
+    "temp_rate_C_per_min": "degC/min",
     "vib_rms": "g",
     "vib_peak": "g",
     "vib_kurtosis": "-"
@@ -248,7 +248,7 @@
             ]
           ]
         },
-        "temp_roc +3 sigma": {
+        "temp_rate_C_per_min +3 sigma": {
           "accuracy_pct": 100.0,
           "recall_pct": {
             "Normal": 100.0,
@@ -278,7 +278,7 @@
             ]
           ]
         },
-        "temp_roc -3 sigma": {
+        "temp_rate_C_per_min -3 sigma": {
           "accuracy_pct": 100.0,
           "recall_pct": {
             "Normal": 100.0,
@@ -704,7 +704,7 @@
             ]
           ]
         },
-        "temp_roc +3 sigma": {
+        "temp_rate_C_per_min +3 sigma": {
           "accuracy_pct": 100.0,
           "recall_pct": {
             "Normal": 100.0,
@@ -734,7 +734,7 @@
             ]
           ]
         },
-        "temp_roc -3 sigma": {
+        "temp_rate_C_per_min -3 sigma": {
           "accuracy_pct": 100.0,
           "recall_pct": {
             "Normal": 100.0,
