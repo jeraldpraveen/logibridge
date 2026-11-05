@@ -74,11 +74,20 @@ class Simulator:
         while not self.stop.is_set():
             if self.fault_active() and a.anomaly in ("temp_drift", "combined"):
                 self.drift_offset += DRIFT_PER_READING
+                if a.drift_cap is not None:
+                    self.drift_offset = min(self.drift_offset, a.drift_cap)
             else:
                 self.drift_offset = 0.0
             value = random.gauss(SETPOINT, TEMP_SIGMA) + self.drift_offset
+            now = time.time()
+            # ground truth for evaluation only (noise-free simulator state); the edge
+            # node never subscribes to this topic
+            self.publish("truth",
+                         {"ts": now, "offset": round(self.drift_offset, 4),
+                          "vib_fault": bool(self.fault_active() and a.anomaly in ("vibration", "combined")),
+                          "fault": bool(self.fault_active())}, qos=0)
             self.publish("temperature",
-                         {"ts": time.time(), "value": round(value, 4)}, qos=1)
+                         {"ts": now, "value": round(value, 4)}, qos=1)
             if not self.sleep(1.0):
                 break
 
@@ -139,6 +148,9 @@ def main():
                    help="seconds of clean data before the fault starts")
     p.add_argument("--anomaly-for", type=float, default=0,
                    help="seconds the fault lasts (0 = forever)")
+    p.add_argument("--drift-cap", type=float, default=None,
+                   help="optional: stop the +0.08 degC/reading drift at this offset (degC). "
+                        "Default = uncapped (spec behaviour)")
     p.add_argument("--speedup", type=float, default=1.0,
                    help="time compression, for quick tests only")
     Simulator(p.parse_args()).run()
