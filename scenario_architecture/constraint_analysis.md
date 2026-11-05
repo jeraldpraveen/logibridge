@@ -1,0 +1,13 @@
+# Task A1 — Constraint Analysis (FreightBridge cold-chain pilot)
+
+## Latency
+A refrigeration failure raises cargo temperature by 1 °C/min, so the 90-second SLA allows at most about 1.5 °C of excursion before an alert must reach the driver and the operations centre. A rural 4G round trip is roughly 100–300 ms, and degrades to 0.5–2 s on 3G/EDGE fringes. Taken alone, a cloud round trip would therefore fit inside 90 s. The latency argument against the cloud is not the round trip but the uplink: sensor data must first be uploaded, queued and processed, and none of that is guaranteed when signal is weak. Edge inference removes that dependency. Our worst-case detection delay is the 30 s feature window plus the 10 s step plus under 1 s of inference, about 41 s, which leaves roughly 49 s of margin.
+
+## Bandwidth
+Temperature at 1 Hz is 86,400 readings/day. Vibration at 500 Hz on three axes is 129.6 million samples/day. At 4 bytes per sample the raw volume is about 0.35 MB + 518 MB, roughly **519 MB per truck per day**. At ₹0.10/MB that is **₹51.9 per truck per day**, or ₹4,409 per day (about ₹16 lakh per year) for 85 trucks. The edge node transmits only a 10-second inference heartbeat (about 120 bytes) plus alerts (assumed 40 per day at 300 bytes): about **1.05 MB/day, ₹0.10**. That is a reduction of roughly 495 times. The heartbeat size and alert count are our assumptions, not measured values.
+
+## Connectivity
+The Nashik–Aurangabad route has seven dead zones of 35–90 minutes. A cloud-only system is blind during each one: at 1 °C/min a refrigeration failure just after entering a 90-minute gap reaches 90 °C of excursion before anyone knows, which is the vaccine-spoilage scenario of the ₹28 lakh incident. The LogiEdge node never depends on the uplink for a decision. Sensing, classification and the local alert (cab buzzer/display) all run on the truck. Every result is appended to a local alert log (store-and-forward). When coverage returns, a sync process uploads unsent entries over MQTT QoS 1 in order, using persistent sessions so nothing is lost across reconnects.
+
+## Privacy
+Pharmaceutical clients need evidence that cargo-condition data cannot be read by unauthorised parties. With on-device inference, raw 500 Hz vibration and temperature traces never leave the truck. Only the class label, a confidence score and timestamps are transmitted, over TLS-protected MQTT with per-truck credentials. This shrinks the attack surface to the alert channel and lets FreightBridge state contractually that raw telemetry is processed locally and discarded after a short retention window. The local alert log can additionally be hash-chained to give a tamper-evident chain-of-custody record, which addresses the rejected-shipment incident.
