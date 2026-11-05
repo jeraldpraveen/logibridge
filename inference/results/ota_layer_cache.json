@@ -1,0 +1,57 @@
+{
+  "build_m3_steps": [
+    {
+      "step": "[1/7] FROM docker.io/library/python:3.11-slim@sha256:65bd3d9f1d7fa268dd1909973ba7eb4bdf41f6dcf2cfbe76ba9528b170f3fd79",
+      "status": "BASE"
+    },
+    {
+      "step": "[2/7] WORKDIR /app",
+      "status": "CACHED"
+    },
+    {
+      "step": "[3/7] COPY requirements.txt .",
+      "status": "CACHED"
+    },
+    {
+      "step": "[4/7] RUN pip install -r requirements.txt",
+      "status": "CACHED"
+    },
+    {
+      "step": "[5/7] COPY --from=pipeline preprocessing.py training_stats.npy ./",
+      "status": "CACHED"
+    },
+    {
+      "step": "[6/7] COPY inference_service.py .",
+      "status": "CACHED"
+    },
+    {
+      "step": "[7/7] COPY model.tflite .",
+      "status": "REBUILT"
+    }
+  ],
+  "only_model_layer_rebuilt": true,
+  "image_layers": 10,
+  "layers_changed_m2_to_m3": 1,
+  "full_image_download_bytes_compressed": 95301774,
+  "model_update_download_bytes_compressed": 9745,
+  "note": "compressed sizes from the registry manifest (layers + image config); a truck that already has the m2 image pulls only the changed layer(s) and the new config",
+  "fleet": {
+    "trucks": 85,
+    "rs_per_MB": 0.1,
+    "MB_definition": "10^6 bytes"
+  },
+  "per_update_cycle": {
+    "full_image_MB_fleet": 8100.65,
+    "full_image_cost_rs": 810.07,
+    "layer_only_MB_fleet": 0.8283,
+    "layer_only_cost_rs": 0.0828,
+    "saving_MB_fleet": 8099.82,
+    "saving_rs": 809.98,
+    "saving_pct": 99.99
+  },
+  "per_year_at_6_weekly_updates": {
+    "cycles": 8.67,
+    "saving_MB_fleet": 70198.5,
+    "saving_rs": 7019.85
+  }
+}

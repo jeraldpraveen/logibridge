@@ -1,0 +1,31 @@
+{
+  "host_runtime": "tensorflow.lite",
+  "container_runtime": "ai-edge-litert",
+  "n": 86,
+  "variants": {
+    "m1_fp32.tflite": {
+      "sha256_equal": true,
+      "identical_predictions": true,
+      "n_prediction_differences": 0,
+      "max_abs_prob_difference": 0.0,
+      "accuracy_host_pct": 100.0,
+      "accuracy_container_pct": 100.0
+    },
+    "m2_ptq_int8.tflite": {
+      "sha256_equal": true,
+      "identical_predictions": true,
+      "n_prediction_differences": 0,
+      "max_abs_prob_difference": 0.0,
+      "accuracy_host_pct": 100.0,
+      "accuracy_container_pct": 100.0
+    },
+    "m3_pruned_ptq_int8.tflite": {
+      "sha256_equal": true,
+      "identical_predictions": true,
+      "n_prediction_differences": 0,
+      "max_abs_prob_difference": 0.0,
+      "accuracy_host_pct": 100.0,
+      "accuracy_container_pct": 100.0
+    }
+  }
+}

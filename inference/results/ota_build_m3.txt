@@ -1,0 +1,56 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.45kB done
+#1 DONE 0.0s
+
+#2 [context pipeline] load .dockerignore
+#2 transferring pipeline: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 3.88kB done
+#5 DONE 0.0s
+
+#6 [stage-0 1/7] FROM docker.io/library/python:3.11-slim@sha256:65bd3d9f1d7fa268dd1909973ba7eb4bdf41f6dcf2cfbe76ba9528b170f3fd79
+#6 resolve docker.io/library/python:3.11-slim@sha256:65bd3d9f1d7fa268dd1909973ba7eb4bdf41f6dcf2cfbe76ba9528b170f3fd79 0.0s done
+#6 DONE 0.0s
+
+#7 [context pipeline] load from client
+#7 transferring pipeline: 76B done
+#7 DONE 0.0s
+
+#8 [stage-0 2/7] WORKDIR /app
+#8 CACHED
+
+#9 [stage-0 4/7] RUN pip install -r requirements.txt
+#9 CACHED
+
+#10 [stage-0 5/7] COPY --from=pipeline preprocessing.py training_stats.npy ./
+#10 CACHED
+
+#11 [stage-0 3/7] COPY requirements.txt .
+#11 CACHED
+
+#12 [stage-0 6/7] COPY inference_service.py .
+#12 CACHED
+
+#13 [stage-0 7/7] COPY model.tflite .
+#13 DONE 0.0s
+
+#14 exporting to image
+#14 exporting layers 0.1s done
+#14 exporting manifest sha256:673f2c5ad5a2e955fc1fe72e3560967381f697c8326c675a8f031edda4db9e37 done
+#14 exporting config sha256:21bd36d3ed8b1268fd5624348ea5d7d0c9237282f15820eb320953d487c778a6 0.0s done
+#14 exporting attestation manifest sha256:25b058cdbb4cb5512094f381099162dc174e9f81cea76964037133eecf55e8f5 0.0s done
+#14 exporting manifest list sha256:6e55dd1ac2f2266e080a6ee0aec08037e88941b9c5f932860485c5c2def3be8d done
+#14 naming to docker.io/library/logibridge-inference:m3 done
+#14 unpacking to docker.io/library/logibridge-inference:m3 0.0s done
+#14 DONE 0.2s

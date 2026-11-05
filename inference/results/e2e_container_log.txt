@@ -1,0 +1,41 @@
+20:24:44 LogiEdge inference | truck truck01 | model /app/model.tflite sha256 c331664a11d5 (int8 in) | runtime ai-edge-litert | log /data/logibridge_log.db
+20:24:44 [SYNC] uplink host.docker.internal:1884 (QoS 1, persistent session)
+20:24:44 local broker host.docker.internal:1883 connected (Success)
+20:25:16 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.440 ms)
+20:25:26 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.138 ms)
+20:25:36 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.134 ms)
+20:25:46 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.035 ms)
+20:25:56 [truck01] Normal   p=[0.5, 0.0, 0.5] (0.102 ms)
+20:26:06 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.146 ms)
+20:26:06 [CAB ALERT] RAISED: Critical (was Normal), confidence 1.00
+20:26:16 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.803 ms)
+20:26:26 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.048 ms)
+20:26:36 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.098 ms)
+20:26:46 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.096 ms)
+20:26:55 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.049 ms)
+20:27:05 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.185 ms)
+20:27:16 [truck01] Critical p=[0.0, 0.0, 0.9961] (0.067 ms)
+20:27:16 [SYNC] uplink connected (Success); backlog 19 entries
+20:27:17 [SYNC] 19 entries acknowledged by uplink; backlog 0
+20:27:26 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.058 ms)
+20:27:26 [CAB ALERT] CLEARED: Normal (was Critical), confidence 1.00
+20:27:27 [SYNC] 2 entries acknowledged by uplink; backlog 0
+20:27:28 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:27:36 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:27:36 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.048 ms)
+20:27:37 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:27:46 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.049 ms)
+20:27:47 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:27:56 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.072 ms)
+20:27:57 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:06 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.051 ms)
+20:28:07 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:10 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:16 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.150 ms)
+20:28:17 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:19 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:26 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.038 ms)
+20:28:27 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:36 [truck01] Normal   p=[0.9961, 0.0, 0.0] (0.042 ms)
+20:28:37 [SYNC] 1 entries acknowledged by uplink; backlog 0
+20:28:40 [SYNC] 1 entries acknowledged by uplink; backlog 0

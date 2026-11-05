@@ -1,0 +1,77 @@
+{
+  "timeline_s": {
+    "fault_at": 60,
+    "fault_for": 90,
+    "uplink_up_at": 130,
+    "end": 240
+  },
+  "local_inferences": 21,
+  "local_alerts": [
+    {
+      "t_s": 82.5,
+      "event": "raised",
+      "label": "Critical",
+      "offline": true
+    },
+    {
+      "t_s": 162.1,
+      "event": "cleared",
+      "label": "Normal",
+      "offline": false
+    }
+  ],
+  "detection_delay_s": {
+    "first_alert_from_fault_onset": 21.2,
+    "first_critical_from_fault_onset": 21.2,
+    "note": "simulator truth onset to the end of the window that produced the alert; PC timing, local broker; excludes cab/uplink delivery"
+  },
+  "local_log": {
+    "entries": 33,
+    "by_kind_count_synced": [
+      [
+        "alerts",
+        2,
+        2
+      ],
+      [
+        "door",
+        9,
+        9
+      ],
+      [
+        "drift",
+        1,
+        1
+      ],
+      [
+        "inference",
+        21,
+        21
+      ]
+    ]
+  },
+  "uplink": {
+    "messages_received": 33,
+    "unique_seq": 33,
+    "duplicates": 0,
+    "missing_seq": [],
+    "backlog_entries_created_while_down": 16,
+    "backlog_alerts": 1,
+    "first_replayed_kinds": [
+      "alerts",
+      "inference",
+      "door",
+      "inference"
+    ],
+    "alerts_replayed_first": true
+  },
+  "uplink_status_messages": [
+    "online",
+    "offline"
+  ],
+  "last_will_after_kill": {
+    "local": true,
+    "uplink": true
+  },
+  "drift_record_replayed": true
+}
