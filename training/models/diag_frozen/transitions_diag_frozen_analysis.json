@@ -1,0 +1,521 @@
+{
+  "meta": {
+    "tag": "diag_frozen",
+    "recorded_at": "2026-11-05 21:52:57",
+    "clean_before_s": 120,
+    "fault_for_s": 180,
+    "clean_after_s": 150,
+    "models": {
+      "m1_fp32": {
+        "file": "training\\models\\diag_frozen\\m1_fp32.tflite",
+        "sha256": "8752b5e90bcfbda6e4874bc1965396d201cc139c63f46dacd888bcb005effde8"
+      },
+      "m2_ptq_int8": {
+        "file": "training\\models\\diag_frozen\\m2_ptq_int8.tflite",
+        "sha256": "c4e91df3aa156a8221b7d130934bb8d150144a60033bdbbb94ca8fc7f2a42130"
+      },
+      "m3_pruned_ptq_int8": {
+        "file": "training\\models\\diag_frozen\\m3_pruned_ptq_int8.tflite",
+        "sha256": "260ac51d30a73ae4fae8faa3edfeaeea0c8639b0e8bec46261fe32a68ee3741a"
+      }
+    },
+    "stats": {
+      "file": "training\\models\\diag_frozen\\training_stats.npy",
+      "sha256": "f35d2688734bd97534a83bfe5245416d69a21d3984517c9fe2abae5865d169d3"
+    }
+  },
+  "history_s_for_steady": 38.0,
+  "analysed_at": "2026-11-05 22:35:13",
+  "analysis_code_sha256": {
+    "training/evaluate_transitions.py": "733f074fc43eed9e23b3297baa48a80618fc431122f89db9d9eb5973c5ff98b6",
+    "training/labeling.py": "636549514f85c0d7ee7d562fcd49f304bad6525e99e3a2ed570bdae73f0df1eb",
+    "data_pipeline/preprocessing.py": "9af39fde1da6bbc7ef3d29016dcae9229b8db6734dba959e8c1a18eb94a5eec0",
+    "data_pipeline/simulator.py": "7c5ea695853fd7b6e503d090fe0cc8d8589a5afa8eecb32e7fd266cb6214904f"
+  },
+  "results": [
+    {
+      "scenario": "temp_to_critical",
+      "target_class": 2,
+      "n_windows": 42,
+      "n_steady": 32,
+      "n_transition": 10,
+      "fault_onset_ts": 1793895904.8913267,
+      "target_onset_ts": 1793895942.2401333,
+      "fault_end_ts": 1793896085.5835745,
+      "target_onset_after_fault_onset_s": 37.3,
+      "models": {
+        "m1_fp32": {
+          "acc_all": 0.619,
+          "acc_steady": 0.6875,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 10,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 10,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ]
+          ]
+        },
+        "m2_ptq_int8": {
+          "acc_all": 0.619,
+          "acc_steady": 0.6875,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 10,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 10,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ]
+          ]
+        },
+        "m3_pruned_ptq_int8": {
+          "acc_all": 0.619,
+          "acc_steady": 0.6875,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 10,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 10,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "temp_warning",
+      "target_class": 1,
+      "n_windows": 42,
+      "n_steady": 35,
+      "n_transition": 7,
+      "fault_onset_ts": 1793895904.9062274,
+      "target_onset_ts": 1793895917.0285175,
+      "fault_end_ts": 1793896084.7415848,
+      "target_onset_after_fault_onset_s": 12.1,
+      "models": {
+        "m1_fp32": {
+          "acc_all": 0.9524,
+          "acc_steady": 1.0,
+          "critical_recall_steady": null,
+          "n_critical_steady": 0,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 13,
+          "n_target_steady": 13,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 30.3,
+          "detection_delay_from_target_onset_s": 18.2,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "m2_ptq_int8": {
+          "acc_all": 0.9524,
+          "acc_steady": 1.0,
+          "critical_recall_steady": null,
+          "n_critical_steady": 0,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 13,
+          "n_target_steady": 13,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 30.3,
+          "detection_delay_from_target_onset_s": 18.2,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "m3_pruned_ptq_int8": {
+          "acc_all": 0.9524,
+          "acc_steady": 1.0,
+          "critical_recall_steady": null,
+          "n_critical_steady": 0,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 13,
+          "n_target_steady": 13,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 30.3,
+          "detection_delay_from_target_onset_s": 18.2,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              22,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "vib_only",
+      "target_class": 2,
+      "n_windows": 42,
+      "n_steady": 34,
+      "n_transition": 8,
+      "fault_onset_ts": 1793895904.9062274,
+      "target_onset_ts": 1793895904.9062274,
+      "fault_end_ts": 1793896084.705375,
+      "target_onset_after_fault_onset_s": 0.0,
+      "models": {
+        "m1_fp32": {
+          "acc_all": 0.5714,
+          "acc_steady": 0.5882,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ]
+          ]
+        },
+        "m2_ptq_int8": {
+          "acc_all": 0.5714,
+          "acc_steady": 0.5882,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ]
+          ]
+        },
+        "m3_pruned_ptq_int8": {
+          "acc_all": 0.5714,
+          "acc_steady": 0.5882,
+          "critical_recall_steady": 0.0,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 0,
+          "target_correct_steady": 0,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": false,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": null,
+          "detection_delay_from_target_onset_s": null,
+          "recovery_delay_s": "n/a (never alerted)",
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "combined_capped",
+      "target_class": 2,
+      "n_windows": 42,
+      "n_steady": 34,
+      "n_transition": 8,
+      "fault_onset_ts": 1793895904.9062274,
+      "target_onset_ts": 1793895904.9062274,
+      "fault_end_ts": 1793896084.7255855,
+      "target_onset_after_fault_onset_s": 0.0,
+      "models": {
+        "m1_fp32": {
+          "acc_all": 0.6667,
+          "acc_steady": 0.7353,
+          "critical_recall_steady": 0.3571,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 5,
+          "target_correct_steady": 5,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 40.4,
+          "detection_delay_from_target_onset_s": 40.4,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              9,
+              0,
+              5
+            ]
+          ]
+        },
+        "m2_ptq_int8": {
+          "acc_all": 0.7143,
+          "acc_steady": 0.7941,
+          "critical_recall_steady": 0.5,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 7,
+          "target_correct_steady": 7,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 40.4,
+          "detection_delay_from_target_onset_s": 40.4,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              7
+            ]
+          ]
+        },
+        "m3_pruned_ptq_int8": {
+          "acc_all": 0.7619,
+          "acc_steady": 0.8235,
+          "critical_recall_steady": 0.5714,
+          "n_critical_steady": 14,
+          "critical_correct_steady": 8,
+          "target_correct_steady": 8,
+          "n_target_steady": 14,
+          "clean_errors_pre": 0,
+          "n_clean_pre": 9,
+          "clean_errors_post": 0,
+          "n_clean_post": 11,
+          "detected": true,
+          "early_escalations": 0,
+          "first_early_escalation_before_target_s": null,
+          "detection_delay_from_fault_onset_s": 30.3,
+          "detection_delay_from_target_onset_s": 30.3,
+          "recovery_delay_s": 10.1,
+          "confusion_steady": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              8
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

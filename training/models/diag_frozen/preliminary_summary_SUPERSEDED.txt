@@ -1,0 +1,21 @@
+PRELIMINARY - superseded. Produced by the first version of evaluate_transitions.py, whose analysis
+(a) credited detections after fault end, (b) used only 30 s of truth history for 'steady' windows,
+(c) reported recovery delay even when no alert was raised. Per-window records were not saved.
+Kept only as a record of what was observed. Models = SHA256SUMS in this folder.
+
+== temp_to_critical  (42 windows)
+  m1_fp32                acc_all  61.9%  acc_steady  67.6% (n=34)  critRecall 0.0  detect Nones  recover 10.077495813369751s
+  m2_ptq_int8            acc_all  61.9%  acc_steady  67.6% (n=34)  critRecall 0.0  detect Nones  recover 10.077495813369751s
+  m3_pruned_ptq_int8     acc_all  61.9%  acc_steady  67.6% (n=34)  critRecall 0.0  detect Nones  recover 10.077495813369751s
+== temp_warning  (42 windows)
+  m1_fp32                acc_all  95.2%  acc_steady 100.0% (n=36)  critRecall None  detect 30.266261100769043s  recover 10.077495813369751s
+  m2_ptq_int8            acc_all  95.2%  acc_steady 100.0% (n=36)  critRecall None  detect 30.266261100769043s  recover 10.077495813369751s
+  m3_pruned_ptq_int8     acc_all  95.2%  acc_steady 100.0% (n=36)  critRecall None  detect 30.266261100769043s  recover 10.077495813369751s
+== vib_only  (42 windows)
+  m1_fp32                acc_all  57.1%  acc_steady  58.3% (n=36)  critRecall 0.0  detect Nones  recover 0.0s
+  m2_ptq_int8            acc_all  57.1%  acc_steady  58.3% (n=36)  critRecall 0.0  detect Nones  recover 0.0s
+  m3_pruned_ptq_int8     acc_all  57.1%  acc_steady  58.3% (n=36)  critRecall 0.0  detect Nones  recover 0.0s
+== combined_capped  (42 windows)
+  m1_fp32                acc_all  69.0%  acc_steady  75.0% (n=36)  critRecall 0.4  detect 40.37635850906372s  recover 10.092679262161255s
+  m2_ptq_int8            acc_all  69.0%  acc_steady  75.0% (n=36)  critRecall 0.4  detect 40.37635850906372s  recover 10.092679262161255s
+  m3_pruned_ptq_int8     acc_all  71.4%  acc_steady  77.8% (n=36)  critRecall 0.4666666666666667  detect 40.37635850906372s  recover 10.092679262161255s

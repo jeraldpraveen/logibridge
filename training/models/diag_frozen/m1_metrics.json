@@ -1,0 +1,38 @@
+{
+  "passed_gate": true,
+  "val_accuracy": 1.0,
+  "recall": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "confusion": [
+    [
+      24,
+      0,
+      0
+    ],
+    [
+      0,
+      18,
+      0
+    ],
+    [
+      0,
+      0,
+      18
+    ]
+  ],
+  "n_train": 222,
+  "n_val": 60,
+  "train_support": [
+    90,
+    66,
+    66
+  ],
+  "val_support": [
+    24,
+    18,
+    18
+  ]
+}
