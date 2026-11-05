@@ -204,8 +204,26 @@ def analyse_scenario(rec):
         clean_pre = clean & (ts < onset)
         clean_post = clean & (ts >= end)
         tc = steady & (labels == target)        # steady target-class windows (any target)
+        # whole stream, labelled by window END-time truth (transitions included)
+        ca = labels == 2
+        tw = ~steady
+        under = pred < labels                   # e.g. Normal/Warning while truth is Critical
+        over = pred > labels                    # e.g. Critical lingering after truth is Normal
         out["models"][k] = {
             "acc_all": round(float((pred == labels).mean()), 4),
+            "correct_all": int((pred == labels).sum()),
+            "n_all": int(len(labels)),
+            "critical_correct_all": int((pred[ca] == 2).sum()),
+            "n_critical_all": int(ca.sum()),
+            "transition_correct": int((pred[tw] == labels[tw]).sum()),
+            "n_transition": int(tw.sum()),
+            "under_classified_all": int(under.sum()),
+            "over_classified_all": int(over.sum()),
+            "error_windows": [{"t_from_onset_s": round(float(t - onset), 1),
+                               "t_from_end_s": round(float(t - end), 1),
+                               "truth": int(l), "pred": int(p), "steady": bool(s),
+                               "kind": "under" if p < l else "over"}
+                              for t, l, p, s in zip(ts, labels, pred, steady) if p != l],
             "acc_steady": round(float((pred[steady] == labels[steady]).mean()), 4) if steady.any() else None,
             "critical_recall_steady": round(float((pred[sc] == 2).mean()), 4) if sc.any() else None,
             "n_critical_steady": int(sc.sum()),
@@ -236,8 +254,28 @@ def analyse(a):
            "analysed_at": time.strftime("%Y-%m-%d %H:%M:%S"),
            "analysis_code_sha256": code_hashes(),
            "results": [analyse_scenario(r) for r in data["scenarios"]]}
+    # stream-wide totals per model (all scenarios, window end-time labels)
+    tot = {}
+    for r in res["results"]:
+        for k, m in r["models"].items():
+            t = tot.setdefault(k, {f: 0 for f in ("correct_all", "n_all", "critical_correct_all",
+                                                   "n_critical_all", "critical_correct_steady",
+                                                   "n_critical_steady", "transition_correct",
+                                                   "n_transition", "under_classified_all",
+                                                   "over_classified_all")})
+            for f in t:
+                t[f] += m[f]
+    res["totals"] = tot
     json.dump(res, open(OUT / f"transitions_{a.tag}_analysis.json", "w"), indent=2)
     print(f"tag {a.tag} | stats sha256 {data['meta']['stats']['sha256'][:12]}")
+    print("\nTOTALS (all scenarios; labels = window end-time truth)")
+    for k, t in tot.items():
+        pc = lambda a, b: f"{a}/{b} = {100 * a / b:.2f}%" if b else "-"
+        print(f"  {k:20s} accuracy {pc(t['correct_all'], t['n_all'])} | Critical recall steady "
+              f"{pc(t['critical_correct_steady'], t['n_critical_steady'])}, incl. transitions "
+              f"{pc(t['critical_correct_all'], t['n_critical_all'])} | transition windows correct "
+              f"{pc(t['transition_correct'], t['n_transition'])} | under {t['under_classified_all']}, "
+              f"over {t['over_classified_all']}")
     for r in res["results"]:
         print(f"\n== {r['scenario']}  target class {r['target_class']}  windows {r['n_windows']} "
               f"(steady {r['n_steady']}, transition {r['n_transition']})  "
