@@ -14,7 +14,7 @@ Vertices used: **Performance** (latency/accuracy headroom), **Power** (energy an
 | Performance | Plenty | Far more than needed | Enough for a ~1k-parameter MLP |
 | Runs Docker/Mosquitto/Ansible? | Yes (Linux) | Yes | **No** |
 
-**Dominant vertex: Power**, closely followed by Cost. The truck supplies 12 V through a DC-DC converter with a 10 W budget for AI. Performance is not the constraint, because our model is a 32-16 MLP over 6 features and needs milliseconds on any of these devices. The 90-second SLA gives a latency budget of about 49 s after the 41 s windowing delay (see A1), and every option meets it by orders of magnitude.
+**Dominant vertex: Power**, closely followed by Cost. The truck supplies 12 V through a DC-DC converter with a 10 W budget for AI. Performance is not the constraint, because our model is a 32-16 MLP over 6 features and needs milliseconds on any of these devices. The 90-second SLA is consumed mostly by windowing, not by inference: the longest observed decision delay was 69.8 s from fault onset (see A1), while one inference takes microseconds on a laptop. Every option meets the inference share of the budget by orders of magnitude.
 
 **For Option 1 (Raspberry Pi 5):**
 - At 7.5 W it fits the 10 W budget with margin.

@@ -113,7 +113,7 @@ def bench(name, fname, Xva, yva, tdp, trials):
         "file": fname,
         "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "mean_latency_ms": round(mean_ms, 4),
-        "p95_latency_ms": round(float(np.median(p95s)), 4),
+        "p95_latency_ms": round(float(np.median(p95s)), 4),          # median of the per-trial p95 values
         "invoke_only_mean_ms": round(float(np.median(invs)), 4),
         "mean_latency_trials_ms": [round(m, 4) for m in means],
         "p95_latency_trials_ms": [round(m, 4) for m in p95s],
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     print(f"TDP estimate {a.tdp} W | {TRIALS} trials x ({WARMUP} warm-up + {RUNS} timed), "
           f"order rotated, median reported | val n={len(yva)}")
     for r in rows:
-        print(f"{r['variant']:22s} mean {r['mean_latency_ms'] * 1000:6.2f} us  p95 {r['p95_latency_ms'] * 1000:6.2f} us  "
+        print(f"{r['variant']:22s} mean {r['mean_latency_ms'] * 1000:6.2f} us  p95 (median of trial p95) {r['p95_latency_ms'] * 1000:6.2f} us  "
               f"invoke {r['invoke_only_mean_ms'] * 1000:5.2f} us  {r['size_KiB']:.2f} KiB  "
               f"acc {r['val_accuracy_pct']:.2f}%  crit {r['critical_recall_pct']:.2f}% (n={r['critical_support']})  "
               f"CPU {r['cpu_pct']}%  E {r['energy_mJ'] * 1000:.2f} uJ")
