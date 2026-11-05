@@ -1,0 +1,52 @@
+{
+  "description": "PSI reference: distribution of the deployed model's Normal-class probability on 300 fresh clean Normal windows (simulator --anomaly none, real time).",
+  "score": "p_normal (model output probability of class 0)",
+  "bins": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "bin_labels": [
+    "[0,0.25)",
+    "[0.25,0.50)",
+    "[0.50,0.75)",
+    "[0.75,1.0]"
+  ],
+  "counts": [
+    0,
+    0,
+    0,
+    300
+  ],
+  "proportions": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "n_windows": 300,
+  "eps_for_empty_bins": 0.0001,
+  "model": "model.tflite",
+  "model_sha256": "c331664a11d53fb6b2eee9952d345ea630195923d72f3e8586ecebd4e21ba133",
+  "runtime": "tensorflow.lite",
+  "stats_sha256": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996",
+  "source": {
+    "trucks": [
+      "ref01",
+      "ref02",
+      "ref03",
+      "ref04",
+      "ref05"
+    ],
+    "simulator": "--anomaly none, real time (no --speedup)",
+    "built_at": "2026-11-06 02:14:56",
+    "machine": "personal PC (MACHINES.md)"
+  },
+  "p_normal_summary": {
+    "min": 0.9961,
+    "mean": 0.9961,
+    "predicted_normal": 300
+  }
+}

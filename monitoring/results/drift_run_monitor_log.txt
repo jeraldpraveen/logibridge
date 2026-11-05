@@ -1,0 +1,63 @@
+PSI monitor | truck truck01 | reference reference_dist.json (n=300, props [0.0, 0.0, 0.0, 1.0], model c331664a) | window 100, every 60 s, alert > 0.25
+02:16:28 warming up: 3/100 inferences
+02:17:28 warming up: 9/100 inferences
+02:18:28 warming up: 15/100 inferences
+02:19:28 warming up: 21/100 inferences
+02:20:28 warming up: 27/100 inferences
+02:21:28 PSI=0.000  n=33  P(Normal) bins=[0, 0, 0, 33]
+02:22:28 PSI=0.000  n=39  P(Normal) bins=[0, 0, 0, 39]
+02:23:28 PSI=0.000  n=45  P(Normal) bins=[0, 0, 0, 45]
+02:24:28 PSI=0.000  n=51  P(Normal) bins=[0, 0, 0, 51]
+02:25:28 PSI=0.000  n=57  P(Normal) bins=[0, 0, 0, 57]
+02:26:28 PSI=0.000  n=63  P(Normal) bins=[0, 0, 0, 63]
+02:27:28 PSI=0.000  n=69  P(Normal) bins=[0, 0, 0, 69]
+02:28:28 PSI=0.000  n=75  P(Normal) bins=[0, 0, 0, 75]
+02:29:28 PSI=0.000  n=81  P(Normal) bins=[0, 0, 0, 81]
+02:30:28 PSI=0.000  n=87  P(Normal) bins=[0, 0, 0, 87]
+02:31:28 PSI=0.000  n=93  P(Normal) bins=[0, 0, 0, 93]
+02:32:28 PSI=0.000  n=99  P(Normal) bins=[0, 0, 0, 99]
+02:33:28 PSI=0.000  n=100  P(Normal) bins=[0, 0, 0, 100]
+02:34:28 PSI=0.241  n=100  P(Normal) bins=[4, 0, 0, 96]
+02:35:28 PSI=0.701  n=100  P(Normal) bins=[10, 0, 0, 90]
+[LOGIBRIDGE DRIFT ALERT] PSI=0.701
+02:36:28 PSI=1.208  n=100  P(Normal) bins=[16, 0, 0, 84]
+[LOGIBRIDGE DRIFT ALERT] PSI=1.208
+02:37:28 PSI=1.747  n=100  P(Normal) bins=[22, 0, 0, 78]
+[LOGIBRIDGE DRIFT ALERT] PSI=1.747
+02:38:28 PSI=2.314  n=100  P(Normal) bins=[28, 0, 0, 72]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.314
+02:39:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:40:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:41:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:42:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:43:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:44:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:45:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:46:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:47:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:48:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:49:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:50:28 PSI=2.411  n=100  P(Normal) bins=[29, 0, 0, 71]
+[LOGIBRIDGE DRIFT ALERT] PSI=2.411
+02:51:28 PSI=1.840  n=100  P(Normal) bins=[23, 0, 0, 77]
+[LOGIBRIDGE DRIFT ALERT] PSI=1.840
+02:52:28 PSI=1.295  n=100  P(Normal) bins=[17, 0, 0, 83]
+[LOGIBRIDGE DRIFT ALERT] PSI=1.295
+02:53:28 PSI=0.782  n=100  P(Normal) bins=[11, 0, 0, 89]
+[LOGIBRIDGE DRIFT ALERT] PSI=0.782
+02:54:28 PSI=0.313  n=100  P(Normal) bins=[5, 0, 0, 95]
+[LOGIBRIDGE DRIFT ALERT] PSI=0.313
+02:55:28 PSI=0.000  n=100  P(Normal) bins=[0, 0, 0, 100]
+02:55:28 recovered: PSI=0.000 < 0.1
+02:56:28 PSI=0.000  n=100  P(Normal) bins=[0, 0, 0, 100]
