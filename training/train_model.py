@@ -2,6 +2,10 @@
 
 Reads training/dataset.npz (time-block train/val split made by generate_dataset.py).
 Gate: validation accuracy must exceed 88 % - the script exits non-zero otherwise.
+
+Validation is never used for a training decision: fixed epoch count, no early stopping
+on val_loss, no checkpoint selection. Class weights (inverse frequency, from TRAINING
+labels only) offset Critical being ~51 % of training windows.
 """
 import json
 import os
@@ -16,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MODELS = ROOT / "training" / "models"
 SEED = 42
 GATE = 0.88
+EPOCHS = 150
 
 
 def build_model():
@@ -40,6 +45,11 @@ def load():
     return d["X_train"], d["y_train"], d["X_val"], d["y_val"]
 
 
+def class_weights(y):
+    counts = np.bincount(y, minlength=3)
+    return {k: float(len(y) / (3 * counts[k])) for k in range(3)}
+
+
 if __name__ == "__main__":
     tf.keras.utils.set_random_seed(SEED)
     Xtr, ytr, Xva, yva = load()
@@ -49,15 +59,16 @@ if __name__ == "__main__":
     model.compile(optimizer=tf.keras.optimizers.Adam(1e-2),
                   loss="sparse_categorical_crossentropy", metrics=["accuracy"])
     model.summary()
-    es = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=20,
-                                          restore_best_weights=True)
-    hist = model.fit(Xtr, ytr, validation_data=(Xva, yva), epochs=300,
-                     batch_size=16, callbacks=[es], verbose=0)
+    cw = class_weights(ytr)
+    print("class weights (from training labels):", {k: round(v, 3) for k, v in cw.items()})
+    hist = model.fit(Xtr, ytr, epochs=EPOCHS, batch_size=16, class_weight=cw,
+                     shuffle=True, verbose=0)
 
     pred = model.predict(Xva, verbose=0).argmax(1)
     acc = float((pred == yva).mean())
     cm, recall = per_class_report(yva, pred)
-    print(f"\nepochs run: {len(hist.history['loss'])}")
+    print(f"\nepochs run: {len(hist.history['loss'])} (fixed), final train loss "
+          f"{hist.history['loss'][-1]:.4f}, train acc {hist.history['accuracy'][-1] * 100:.2f} %")
     print(f"validation accuracy: {acc * 100:.2f} %")
     print("confusion matrix (rows = true 0/1/2):\n", cm)
     print("recall per class:", np.round(recall * 100, 2))
@@ -66,7 +77,8 @@ if __name__ == "__main__":
     passed = acc > GATE
     # metrics are saved for every run (including failures) so the evidence is kept
     json.dump({"passed_gate": passed, "val_accuracy": acc, "recall": recall.tolist(),
-               "confusion": cm.tolist(),
+               "confusion": cm.tolist(), "epochs": EPOCHS, "class_weights": cw,
+               "seed": SEED, "selection_on_validation": False,
                "n_train": int(len(ytr)), "n_val": int(len(yva)),
                "train_support": np.bincount(ytr, minlength=3).tolist(),
                "val_support": np.bincount(yva, minlength=3).tolist()},

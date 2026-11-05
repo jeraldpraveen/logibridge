@@ -94,7 +94,9 @@ if __name__ == "__main__":
         initial_sparsity=0.0, final_sparsity=SPARSITY,
         begin_step=0, end_step=int(steps * 0.8), power=3)
     hidden = [l for l in model.layers if isinstance(l, tf.keras.layers.Dense)][:-1]
-    model.fit(Xtr, ytr, epochs=epochs, batch_size=bs, verbose=0,
+    from train_model import class_weights
+    # same rule as M1: fixed epochs, training-label class weights, no validation use
+    model.fit(Xtr, ytr, epochs=epochs, batch_size=bs, verbose=0, class_weight=class_weights(ytr),
               callbacks=[NeuronPruner(hidden, schedule)])
 
     small = shrink(model)
@@ -107,5 +109,6 @@ if __name__ == "__main__":
     print(f"pruned FP32 val acc {(pred == yva).mean() * 100:.2f} %, recall {np.round(rec * 100, 2)}")
     small.save(MODELS / "m3_pruned_fp32.h5")
 
-    n8 = cp.quantise_int8(small, cp.calibration_set(Xtr), MODELS / "m3_pruned_ptq_int8.tflite")
+    n8 = cp.quantise_int8(small, cp.calibration_set(Xtr, y=ytr, save_as=MODELS / "calibration_m3.npz"),
+                          MODELS / "m3_pruned_ptq_int8.tflite")
     print(f"m3_pruned_ptq_int8.tflite {n8 / 1024:.2f} KiB")
