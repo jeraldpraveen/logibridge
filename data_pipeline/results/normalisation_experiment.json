@@ -1,0 +1,950 @@
+{
+  "description": "Validation accuracy with correct vs mean-shifted (k*std) normalisation stats; std unchanged. Shifting the mean by +k*std moves that feature's z-score by -k.",
+  "k_sigma": 3.0,
+  "n_val": 86,
+  "val_support": {
+    "Normal": 24,
+    "Warning": 18,
+    "Critical": 44
+  },
+  "dataset_sha256": "d2ec89958d1c810c8c293afa12a967515c935553f41ba42e9e0d690a7db1feab",
+  "stats_sha256": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996",
+  "features": [
+    "temp_mean",
+    "temp_std",
+    "temp_roc",
+    "vib_rms",
+    "vib_peak",
+    "vib_kurtosis"
+  ],
+  "shift_in_physical_units": {
+    "temp_mean": 0.1375,
+    "temp_std": 0.0807,
+    "temp_roc": 1.1759,
+    "vib_rms": 0.0343,
+    "vib_peak": 0.0495,
+    "vib_kurtosis": 1.5424
+  },
+  "units": {
+    "temp_mean": "degC",
+    "temp_std": "degC",
+    "temp_roc": "degC/min",
+    "vib_rms": "g",
+    "vib_peak": "g",
+    "vib_kurtosis": "-"
+  },
+  "models": {
+    "M2 PTQ INT8": {
+      "file": "m2_ptq_int8.tflite",
+      "sha256": "c331664a11d53fb6b2eee9952d345ea630195923d72f3e8586ecebd4e21ba133",
+      "conditions": {
+        "correct": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "all +3 sigma": {
+          "accuracy_pct": 91.86,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 84.09
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 25,
+            "Critical": 37
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              7,
+              37
+            ]
+          ]
+        },
+        "all -3 sigma": {
+          "accuracy_pct": 96.51,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 93.18
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 21,
+            "Critical": 41
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              3,
+              41
+            ]
+          ]
+        },
+        "temp_mean +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_mean -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_std +3 sigma": {
+          "accuracy_pct": 94.19,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 88.64
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 23,
+            "Critical": 39
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              5,
+              39
+            ]
+          ]
+        },
+        "temp_std -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_roc +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_roc -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_rms +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_rms -3 sigma": {
+          "accuracy_pct": 96.51,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 83.33,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 15,
+            "Critical": 47
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              3
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_peak +3 sigma": {
+          "accuracy_pct": 98.84,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 94.44,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 17,
+            "Critical": 45
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              17,
+              1
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_peak -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_kurtosis +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_kurtosis -3 sigma": {
+          "accuracy_pct": 96.51,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 93.18
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 21,
+            "Critical": 41
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              3,
+              41
+            ]
+          ]
+        }
+      }
+    },
+    "M1 FP32": {
+      "file": "m1_fp32.tflite",
+      "sha256": "986ebc192e29f0d4be97fd62fe5a65af22e6e786e858caabd8ef880e52d39fb5",
+      "conditions": {
+        "correct": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "all +3 sigma": {
+          "accuracy_pct": 91.86,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 84.09
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 25,
+            "Critical": 37
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              7,
+              37
+            ]
+          ]
+        },
+        "all -3 sigma": {
+          "accuracy_pct": 95.35,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 90.91
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 22,
+            "Critical": 40
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              4,
+              40
+            ]
+          ]
+        },
+        "temp_mean +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_mean -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_std +3 sigma": {
+          "accuracy_pct": 94.19,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 88.64
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 23,
+            "Critical": 39
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              5,
+              39
+            ]
+          ]
+        },
+        "temp_std -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_roc +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "temp_roc -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_rms +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_rms -3 sigma": {
+          "accuracy_pct": 94.19,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 72.22,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 13,
+            "Critical": 49
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              13,
+              5
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_peak +3 sigma": {
+          "accuracy_pct": 98.84,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 94.44,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 17,
+            "Critical": 45
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              17,
+              1
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_peak -3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_kurtosis +3 sigma": {
+          "accuracy_pct": 100.0,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 100.0
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 18,
+            "Critical": 44
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              0,
+              44
+            ]
+          ]
+        },
+        "vib_kurtosis -3 sigma": {
+          "accuracy_pct": 96.51,
+          "recall_pct": {
+            "Normal": 100.0,
+            "Warning": 100.0,
+            "Critical": 93.18
+          },
+          "predicted_counts": {
+            "Normal": 24,
+            "Warning": 21,
+            "Critical": 41
+          },
+          "confusion": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              3,
+              41
+            ]
+          ]
+        }
+      }
+    }
+  }
+}
