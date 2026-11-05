@@ -1,0 +1,4 @@
+variant,file,mean_latency_ms,p95_latency_ms,size_KiB,val_accuracy_pct,energy_mJ,critical_recall_pct,critical_support,invoke_only_mean_ms,cpu_pct,power_W_est,sha256
+M1 FP32 baseline,m1_fp32.tflite,0.0084,0.011,5.2,100.0,0.02503,100.0,44,0.0017,10.7,3.0,986ebc192e29f0d4be97fd62fe5a65af22e6e786e858caabd8ef880e52d39fb5
+M2 PTQ INT8,m2_ptq_int8.tflite,0.0174,0.0199,4.51,100.0,0.04483,100.0,44,0.0018,9.18,2.57,c331664a11d53fb6b2eee9952d345ea630195923d72f3e8586ecebd4e21ba133
+M3 Pruned + PTQ INT8,m3_pruned_ptq_int8.tflite,0.0175,0.0209,3.67,100.0,0.04747,100.0,44,0.0018,9.69,2.71,f220ec060e600287f0a26cd2c971c12a1a0f9e891c36a1586c510998a222669a
