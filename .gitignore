@@ -1,0 +1,25 @@
+# Virtual environment and caches
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Raw / bulky generated data (the small derived artefacts are tracked)
+training/raw/
+*.log
+*.tmp
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Secrets (never commit)
+.env
+*.pem
+*.key
+
+# Ansible / Docker local state
+*.retry
+.ansible/
