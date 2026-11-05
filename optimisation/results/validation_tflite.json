@@ -1,0 +1,186 @@
+{
+  "dataset_sha256": "d2ec89958d1c810c8c293afa12a967515c935553f41ba42e9e0d690a7db1feab",
+  "stats_sha256": "20f01b2d43a70ae310cd2880b2c7adface47f16136d61e3ac36d76d84b767996",
+  "n_val": 86,
+  "val_support": [
+    24,
+    18,
+    44
+  ],
+  "variants": {
+    "m1_fp32.tflite": {
+      "sha256": "986ebc192e29f0d4be97fd62fe5a65af22e6e786e858caabd8ef880e52d39fb5",
+      "size_bytes": 5324,
+      "input_dtype": "float32",
+      "output_dtype": "float32",
+      "accuracy_pct": 100.0,
+      "confusion": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          44
+        ]
+      ],
+      "recall": {
+        "0": {
+          "correct": 24,
+          "support": 24,
+          "recall_pct": 100.0
+        },
+        "1": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "2": {
+          "correct": 44,
+          "support": 44,
+          "recall_pct": 100.0
+        }
+      },
+      "critical_recall_by_mechanism": {
+        "combined": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "temperature-only": {
+          "correct": 16,
+          "support": 16,
+          "recall_pct": 100.0
+        },
+        "vibration-only": {
+          "correct": 10,
+          "support": 10,
+          "recall_pct": 100.0
+        }
+      }
+    },
+    "m2_ptq_int8.tflite": {
+      "sha256": "c331664a11d53fb6b2eee9952d345ea630195923d72f3e8586ecebd4e21ba133",
+      "size_bytes": 4616,
+      "input_dtype": "int8",
+      "output_dtype": "int8",
+      "accuracy_pct": 100.0,
+      "confusion": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          44
+        ]
+      ],
+      "recall": {
+        "0": {
+          "correct": 24,
+          "support": 24,
+          "recall_pct": 100.0
+        },
+        "1": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "2": {
+          "correct": 44,
+          "support": 44,
+          "recall_pct": 100.0
+        }
+      },
+      "critical_recall_by_mechanism": {
+        "combined": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "temperature-only": {
+          "correct": 16,
+          "support": 16,
+          "recall_pct": 100.0
+        },
+        "vibration-only": {
+          "correct": 10,
+          "support": 10,
+          "recall_pct": 100.0
+        }
+      }
+    },
+    "m3_pruned_ptq_int8.tflite": {
+      "sha256": "f220ec060e600287f0a26cd2c971c12a1a0f9e891c36a1586c510998a222669a",
+      "size_bytes": 3760,
+      "input_dtype": "int8",
+      "output_dtype": "int8",
+      "accuracy_pct": 100.0,
+      "confusion": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          44
+        ]
+      ],
+      "recall": {
+        "0": {
+          "correct": 24,
+          "support": 24,
+          "recall_pct": 100.0
+        },
+        "1": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "2": {
+          "correct": 44,
+          "support": 44,
+          "recall_pct": 100.0
+        }
+      },
+      "critical_recall_by_mechanism": {
+        "combined": {
+          "correct": 18,
+          "support": 18,
+          "recall_pct": 100.0
+        },
+        "temperature-only": {
+          "correct": 16,
+          "support": 16,
+          "recall_pct": 100.0
+        },
+        "vibration-only": {
+          "correct": 10,
+          "support": 10,
+          "recall_pct": 100.0
+        }
+      }
+    }
+  }
+}
