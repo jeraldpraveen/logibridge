@@ -1,0 +1,32 @@
+# Run 3_update_m3 - 2026-11-05 21:32:24 - update: push M3 (model file changed) -> task 4 must stop and task 6 restart the container
+# $ ansible-playbook -i deployment/inventory.ini deployment/logibridge_deploy.yml -e model_src=/mnt/j/ASSIGNMENT/MLONEDGE/logibridge/training/models/m3_pruned_ptq_int8.tflite
+
+PLAY [Deploy LogiEdge inference service to a truck edge node] ******************
+
+TASK [1. Create /opt/logibridge directory if not present] **********************
+ok: [localhost]
+
+TASK [2. Copy new model file to /opt/logibridge/model.tflite] ******************
+changed: [localhost]
+
+TASK [3. Copy updated reference_dist.json] *************************************
+ok: [localhost]
+
+TASK [4. Stop the running inference container if running (only when the model or reference changed)] ***
+changed: [localhost]
+
+TASK [5. Pull updated container image from local Docker registry] **************
+ok: [localhost]
+
+TASK [6. Start inference container with environment variables] *****************
+changed: [localhost]
+
+TASK [7. Wait 15 seconds and verify container is running] **********************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+# exit code 0
+# container log after the run:
+21:32:29 LogiEdge inference | truck truck01 | model /opt/logibridge/model.tflite sha256 f220ec060e60 (int8 in) | runtime ai-edge-litert | log /data/logibridge_log.db

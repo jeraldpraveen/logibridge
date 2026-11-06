@@ -1,0 +1,91 @@
+# LogiEdge edge-node deployment (Task E2) - exactly the 7 tasks of the brief.
+#
+# Run from WSL Ubuntu, in the repository root (Docker Desktop WSL integration enabled):
+#   sudo ansible-playbook -i deployment/inventory.ini deployment/logibridge_deploy.yml
+# Run it twice without changes: the second run must end with changed=0.
+#
+# Idempotency design:
+#   * tasks 1-3 and 5 are idempotent modules: they change something only when the directory,
+#     a file's content or the registry image differ from what is on the truck;
+#   * task 4 stops the container ONLY when the model or reference file was updated (the
+#     container reads them from a bind mount, so it must restart to load them) and only if it
+#     is running (a fresh truck has none); otherwise it is skipped;
+#   * task 6 (docker_container, state=started) compares the running container with the wanted
+#     image, environment and mounts, and recreates or starts it only on a difference;
+#   * task 7 only reads state (changed_when: false).
+- name: Deploy LogiEdge inference service to a truck edge node
+  hosts: edge_nodes
+  gather_facts: false
+  become: true
+  vars:
+    repo_root: "{{ playbook_dir }}/.."
+    model_src: "{{ repo_root }}/inference/model.tflite"         # committed M2; override with -e model_src=...
+    install_dir: /opt/logibridge
+    container_name: logibridge-inference
+    registry_image: "localhost:5000/logibridge-inference:m2"   # local registry, bound to 127.0.0.1
+    truck_id: truck01
+    mqtt_host: host.docker.internal
+    uplink_host: ""                                            # empty = offline-only (no ops broker in the demo)
+
+  tasks:
+    - name: "1. Create {{ install_dir }} directory if not present"
+      ansible.builtin.file:
+        path: "{{ install_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: "2. Copy new model file to {{ install_dir }}/model.tflite"
+      ansible.builtin.copy:
+        src: "{{ model_src }}"
+        dest: "{{ install_dir }}/model.tflite"
+        mode: "0644"
+      register: model_file
+
+    - name: "3. Copy updated reference_dist.json"
+      ansible.builtin.copy:
+        src: "{{ repo_root }}/monitoring/reference_dist.json"
+        dest: "{{ install_dir }}/reference_dist.json"
+        mode: "0644"
+      register: reference_file
+
+    - name: "4. Stop the running inference container if running (only when the model or reference changed)"
+      # docker_container(state=stopped) would try to CREATE a container on a fresh truck, so check
+      # whether one is running first; report 'changed' only when a container was actually stopped
+      ansible.builtin.shell: >
+        if [ -n "$(docker ps -q --filter name=^{{ container_name }}$)" ];
+        then docker stop {{ container_name }} >/dev/null && echo stopped;
+        else echo not-running; fi
+      register: stop_result
+      changed_when: "'stopped' in stop_result.stdout"
+      when: model_file.changed or reference_file.changed
+
+    - name: "5. Pull updated container image from local Docker registry"
+      community.docker.docker_image:
+        name: "{{ registry_image }}"
+        source: pull
+        force_source: true          # always ask the registry; changed only if the image differs
+
+    - name: "6. Start inference container with environment variables"
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ registry_image }}"
+        state: started
+        restart_policy: unless-stopped
+        env:
+          MODEL_PATH: "{{ install_dir }}/model.tflite"
+          TRUCK_ID: "{{ truck_id }}"
+          MQTT_HOST: "{{ mqtt_host }}"
+          MQTT_PORT: "1883"
+          UPLINK_HOST: "{{ uplink_host }}"
+          LOG_DB: /data/logibridge_log.db
+        volumes:
+          - "{{ install_dir }}:{{ install_dir }}:ro"
+          - "logibridge-data:/data"
+
+    - name: "7. Wait 15 seconds and verify container is running"
+      ansible.builtin.shell: >
+        sleep 15 &&
+        docker inspect -f '{{ "{{" }}.State.Running{{ "}}" }} {{ "{{" }}.RestartCount{{ "}}" }}' {{ container_name }}
+      register: container_state
+      changed_when: false
+      failed_when: container_state.stdout != "true 0"

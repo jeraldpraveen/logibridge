@@ -1,0 +1,31 @@
+# Run 1 - 2026-11-05 21:33:18 - personal PC, WSL Ubuntu 24.04 as root (equivalent to sudo), ansible [core 2.16.3]
+# starting state: run 1 = fresh edge node (no /opt/logibridge, no container); run 2 = immediately after run 1, nothing changed
+# $ ansible-playbook -i deployment/inventory.ini deployment/logibridge_deploy.yml
+
+PLAY [Deploy LogiEdge inference service to a truck edge node] ******************
+
+TASK [1. Create /opt/logibridge directory if not present] **********************
+changed: [localhost]
+
+TASK [2. Copy new model file to /opt/logibridge/model.tflite] ******************
+changed: [localhost]
+
+TASK [3. Copy updated reference_dist.json] *************************************
+changed: [localhost]
+
+TASK [4. Stop the running inference container if running (only when the model or reference changed)] ***
+ok: [localhost]
+
+TASK [5. Pull updated container image from local Docker registry] **************
+ok: [localhost]
+
+TASK [6. Start inference container with environment variables] *****************
+changed: [localhost]
+
+TASK [7. Wait 15 seconds and verify container is running] **********************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+# exit code 0
