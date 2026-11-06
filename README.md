@@ -38,9 +38,11 @@ brief's 95 % target — disclosed in F3, which recommends **M2 in shadow mode** 
 
 ## Benchmark machine attribution
 
-The figures in `optimisation/results/benchmark_results.*` were produced on the **original
-machine**: `<FILL IN: laptop model, CPU, RAM, OS>`, TDP estimate 28 W, Python 3.11.4,
-TensorFlow 2.21.0. `benchmark_results.json` does not record the machine, so this line is the
+The figures in `optimisation/results/benchmark_results.*` were produced on the **office PC**:
+`<FILL IN: model, CPU, RAM, OS>`, TDP estimate 28 W, Python 3.11.4, TensorFlow 2.21.0.
+All work from task D2 onward is done on the **personal PC**: Samsung 750XHD, Intel Core Ultra 5
+225U, 15.5 GB RAM, Windows 11 Home (moved because Docker Desktop could not be installed on the
+office PC). `benchmark_results.json` does not record the machine, so this line is the
 record. If the benchmark is re-run on another PC, save it to a **separate** file (e.g.
 `benchmark_results_pc2.csv`), record that machine's CPU/RAM/OS here, and make the report say
 which machine produced which table. Do not overwrite the original results.
@@ -52,13 +54,13 @@ which machine produced which table. Do not overwrite the original results.
 | A1 Constraint analysis, A2 architecture diagram | Done |
 | B1 Constraint Triangle, B2 Roofline | Done |
 | C1 Simulator (`--anomaly`, `--speedup`, `--anomaly-after/-for`, truth topic) | Done |
-| C2 Preprocessing (MA-5, 30 s / 10 s windows, 6 features, frozen stats) | Done — **3σ experiment missing** |
-| C3 Feature-level fusion | Implemented — **written justification missing** |
+| C2 Preprocessing (MA-5, 30 s / 10 s windows, 6 features, frozen stats) | Done — 3σ experiment in `data_pipeline/results/normalisation_experiment.json` |
+| C3 Feature-level fusion | Done — justification + MQTT topic tree/QoS in `data_pipeline/mqtt_architecture.md` |
 | D1 Dataset + training (> 88 %) | Done |
-| D2 Docker + OTA layer-cache demo | **Not started** |
-| D3 10-stage pipeline mapping | **Not started** |
-| E1 PSI drift monitor | **Not started** |
-| E2 Ansible playbook | **Not started** |
+| D2 Docker + OTA layer-cache demo | Done — `inference/` (see `inference/README.md`) |
+| D3 10-stage pipeline mapping | Done — `deployment/pipeline_mapping.md` |
+| E1 PSI drift monitor | Done — `monitoring/` (see `monitoring/README.md`) |
+| E2 Ansible playbook | Done — `deployment/` (run 2: `changed=0`; see `deployment/README.md`) |
 | E3 OTA strategy | Done |
 | F1 Three variants, F2 benchmark, F3 recommendation | Done |
 | Reports (phase 1, phase 2, final), demo video, submission | **Not started** |
@@ -70,7 +72,7 @@ separately with the `Task Xn - ...` message style used so far.
 
 1. **Verify the new PC.** `setup_check.py` → ALL OK. Record the new PC's CPU / RAM / OS in a
    short `MACHINES.md` (needed for any timing measured there). Run the simulator against
-   Mosquitto for 30 s and confirm messages arrive (`mosquitto_sub -t "logibridge/#" -v`).
+   Mosquitto for 30 s and confirm messages arrive (`& "C:\Program Files\mosquitto\mosquitto_sub.exe" -t "logibridge/#" -v`; it is not on PATH).
 
 2. **C2 mandatory normalisation experiment.** New `data_pipeline/normalisation_experiment.py`:
    evaluate M2 (and M1 for reference) on the validation split with the correct stats, then with
@@ -89,8 +91,11 @@ separately with the `Task Xn - ...` message style used so far.
 4. **D2 inference service + Docker.** `inference/inference_service.py`: subscribe to the truck's
    sensor topics, run the existing `preprocessing.py` logic, load the model from `MODEL_PATH`
    with the TFLite interpreter, publish to `logibridge/trucks/{truck_id}/inference`; append
-   Warning/Critical alerts to a local SQLite/JSONL alert log and mark them synced once an
-   uplink publish is acknowledged (offline store-and-forward). Copy M2 to
+   every inference result, alert, door event and drift value to a local SQLite log (sequence
+   number, written before publishing); drop temperature readings whose timestamp is not newer
+   than the last; publish retained `status` with a Last Will. A sync process replays unsynced
+   entries (alerts first) with QoS 1 and marks them synced on PUBACK. Must match
+   `data_pipeline/mqtt_architecture.md`. Copy M2 to
    `inference/model.tflite`. `Dockerfile`: `python:3.11-slim`, `pip install` (use
    `tflite-runtime` or `ai-edge-litert`, not full TensorFlow, to keep the image small) **before**
    `COPY model.tflite .`; broker host via env (`host.docker.internal` on Docker Desktop).
@@ -108,7 +113,7 @@ separately with the `Task Xn - ...` message style used so far.
    Run: clean → `--anomaly combined` → clean; save the PSI log (before/during/after values) to
    `monitoring/results/`.
 
-6. **E2 Ansible.** Local registry (`docker run -d -p 5000:5000 --name registry registry:2`),
+6. **E2 Ansible.** Local registry (`docker run -d -p 127.0.0.1:5000:5000 --name registry registry:2`, localhost only),
    push the image as `localhost:5000/logibridge-inference`. `deployment/logibridge_deploy.yml`
    with exactly the 7 tasks in the brief, run from WSL against localhost
    (`community.docker` collection). Make tasks 4 and 6 idempotent (e.g. only stop/restart when
