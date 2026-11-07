@@ -43,6 +43,7 @@ from pathlib import Path
 
 import numpy as np
 import paho.mqtt.client as mqtt
+from paho.mqtt.enums import CallbackAPIVersion
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "data_pipeline"))
@@ -87,7 +88,7 @@ def record(host, port):
         elif stream == "vibration":
             feats[name].add_vibration(d["ts"], d["value"])
 
-    c = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="dataset-collector")
+    c = mqtt.Client(CallbackAPIVersion.VERSION2, client_id="dataset-collector")
     c.on_message = on_msg
     c.connect(host, port)
     c.subscribe("logibridge/trucks/+/+", qos=1)
